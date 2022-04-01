@@ -8,8 +8,10 @@ const nuevoRoommater = async () => {
     const roommater = data.results[0];
     const usuario = {
       id: uuidv4().slice(30),
-      correo: roommater.email,
-      nombre: `${roommater.name.title} ${roommater.name.first} ${roommater.name.lastname}`,
+      nombre: `${roommater.name.first} ${roommater.name.lastname}`,
+      debe: 0,
+      recibe: 0,
+      correo: roommater.email
     };
     return usuario;
   } catch (e) {
@@ -22,4 +24,5 @@ const guardarRoommater = (roommater) => {
   roommaterJSON.roommater.push(roommater);
   fs.writeFileSync("roommates.json", JSON.stringify(roommaterJSON));
 };
+
 module.exports = { nuevoRoommater, guardarRoommater };
